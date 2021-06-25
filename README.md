@@ -26,12 +26,12 @@ Authentication timeout: 60 secs; Authentication retries: 3
 
 enable
 conf t
-hostname Catalyst
+hostname HOSTNAME
 crypto key generate rsa general-keys label SSHKEY modulus 2048
 ip ssh rsa keypair-name SSHKEY
 service password-encryption
-enable secret 0 ENABLESECRET (toor)
-username USERNAME (catalyst) password 0 PASSWORD (catatest)
+enable secret 0 ENABLESECRET 
+username USERNAME password 0 PASSWORD 
 aaa new-model
 aaa authentication login default local-case
 aaa authentication enable default enable
@@ -58,9 +58,3 @@ Catalyst#write
 
 Catalyst#reload (pour test)
 
-## co ssh
-ssh -c aes256-cbc catalyst@192.168.17.11 
-mdp pour enable : toor
-log ssh -> catalyst/catatest
-
-ansible-playbook -i ~/Documents/stage_meyer/hardening_debian/Cisco_cis_ansible/examples/host ~/Documents/stage_meyer/hardening_debian/Cisco_cis_ansible/examples/playbook.yaml
