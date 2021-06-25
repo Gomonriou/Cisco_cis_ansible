@@ -272,7 +272,150 @@
     - '1.4.3'
     - scored  
     - '1.4'
-    
+
 ##########################################################################################################################################################
 #####################                                                  1.5 SNMP Rules                                                #####################
 ##########################################################################################################################################################
+
+# 1.5.1 Set 'no snmp-server' to disable SNMP when unused (Scored)
+- name: 1.5.1 Set 'no snmp-server' to disable SNMP when unused
+  ios_config:
+    lines:
+      - no snmp-server
+  when:
+  - not need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.1'
+    - scored  
+    - '1.5'
+
+# 1.5.2 Unset 'private' for 'snmp-server community' (Scored)
+- name: 1.5.2 Unset 'private' for 'snmp-server community'
+  ios_config:
+    lines:
+      - no snmp-server community {{ private }}
+  when:
+  - not need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.2'
+    - scored  
+    - '1.5'
+
+# 1.5.3 Unset 'public' for 'snmp-server community' (Scored)
+- name: 1.5.3 Unset 'public' for 'snmp-server community'
+  ios_config:
+    lines:
+      - no snmp-server community {{ public }}
+  when:
+  - not need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.3'
+    - scored  
+    - '1.5'
+
+
+# 1.5.4 Do not set 'RW' for any 'snmp-server community' (Scored)
+- name: 1.5.4 Unset 'RW' for 'snmp-server community'
+  ios_config:
+    lines:
+      - no snmp-server community {{ write_community_string }}
+  when:
+  - not need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.4'
+    - scored  
+    - '1.5'    
+
+# 1.5.5 Set the ACL for each 'snmp-server community' (Scored)
+- name: 1.5.5 Set the ACL for each 'snmp-server community'
+  ios_config:
+    lines:
+      - snmp-server community  {{ community_string }} ro {{ snmp_access-list_name }}
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.5'
+    - scored  
+    - '1.5'       
+
+# 1.5.6 Create an 'access-list' for use with SNMP (Scored)
+- name: 1.5.6 Create an 'access-list' for use with SNMP
+  ios_config:
+    lines:
+      - access-list {{ snmp_acl_number }} permit {{ snmp_access-list }}
+      - access-list deny any log
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.6'
+    - scored  
+    - '1.5'  
+
+# 1.5.7 Set 'snmp-server host' when using SNMP (Scored)
+- name: 1.5.7 Set 'snmp-server host' when using SNMP
+  ios_config:
+    lines:
+      - snmp-server host {{ snmp_server_ip }} {{ trap_community_string }} snmp
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.7'
+    - scored  
+    - '1.5'  
+
+# 1.5.8 Set 'snmp-server enable traps snmp' (Scored)
+- name: 1.5.8 Set 'snmp-server enable traps snmp'
+  ios_config:
+    lines:
+      - snmp-server enable traps snmp authentication linkup linkdown coldstart
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_1
+    - '1.5.8'
+    - scored  
+    - '1.5'   
+
+# 1.5.9 Set 'priv' for each 'snmp-server group' using SNMPv3 (Scored)
+- name: 1.5.9 Set 'priv' for each 'snmp-server group' using SNMPv3
+  ios_config:
+    lines:
+      - snmp-server group {{ group_name }} v3 priv
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_2
+    - '1.5.9'
+    - scored  
+    - '1.5'    
+
+# 1.5.10 Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3 (Scored)
+- name: 1.5.10 Require 'aes 128' as minimum for 'snmp-server user' when using SNMPv3
+  ios_config:
+    lines:
+      - snmp-server user {{ user_name }} {{ group_name }} v3 encrypted auth sha {{ auth_password }} priv aes 128 {{ priv_password }} {{ acl_name }}
+  when:
+  - need_SNMP
+  tags:
+    - section1
+    - level_2
+    - '1.5.10'
+    - scored  
+    - '1.5'    
+          

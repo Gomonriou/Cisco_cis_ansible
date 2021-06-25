@@ -11,3 +11,23 @@ secret_string : unsupersecret # Avoir un secret partagé différent par client d
 host_timeout: '10'
 
 # Limiter les connections à une adresse mac par port
+
+
+## SNMP
+
+need_SNMP : false
+private : private
+public : public
+write_community_string : RW
+community_string : XX
+snmp_access-list_name : XX , XX
+snmp_acl_number : xx
+snmp_access-list : xx
+snmp_server_ip : XX
+trap_community_string : XX
+group_name : XX
+
+user_name : XX
+auth_password : XX
+priv_password : XX
+acl_name : XX
