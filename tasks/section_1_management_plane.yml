@@ -159,6 +159,47 @@
 #####################                                                  1.3 Banner Rules                                              #####################
 ##########################################################################################################################################################
 
+# 1.3.1 Set the 'banner-text' for 'banner exec' (Scored)
+- name: 1.3.1 Set the 'banner-text' for 'banner exec'
+  ios_banner:
+    banner: exec
+    text: |
+      *** Ensure that you update the system configuration ***
+      *** documentation after making system changes.      ***
+    state: present
+  tags:
+    - section1
+    - level_1
+    - 1.3.1
+    - scored
+
+# 1.3.2 Set the 'banner-text' for 'banner login' (Scored)
+- name: 1.3.2 Set the 'banner-text' for 'banner login'
+  ios_banner:
+    banner: login
+    text: |
+      *** Login Required. Unauthorized use is prohibited ***
+    state: present
+  tags:
+    - section1
+    - level_1
+    - 1.3.2
+    - scored
+
+# 1.3.3 Set the 'banner-text' for 'banner motd' (Scored)
+- name: 1.3.3 Set the 'banner-text' for 'banner motd'
+  ios_banner:
+    banner: motd
+    text: |
+      This device is for authorized personnel only. 
+      If you have not been provided with permission to access this device - disconnect at once.
+    state: present
+  tags:
+    - section1
+    - level_1
+    - 1.3.3
+    - scored  
+      
 ##########################################################################################################################################################
 #####################                                                  1.4 Password Rules                                            #####################
 ##########################################################################################################################################################
