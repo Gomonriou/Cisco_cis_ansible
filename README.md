@@ -31,7 +31,7 @@ crypto key generate rsa general-keys label SSHKEY modulus 2048
 ip ssh rsa keypair-name SSHKEY
 service password-encryption
 enable secret 0 ENABLESECRET 
-username USERNAME password 0 PASSWORD 
+username USERNAME secret PASSWORD 
 aaa new-model
 aaa authentication login default local-case
 aaa authentication enable default enable
