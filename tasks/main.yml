@@ -6,3 +6,5 @@
 #   become: true
 # - include: section_3_data_plane.yml
 #   become: true
+- include: radius.yml
+  become: true

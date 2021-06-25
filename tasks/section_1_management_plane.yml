@@ -1,3 +1,5 @@
+---
+
 ##########################################################################################################################################################
 #####################                 1.1 Local Authentication, Authorization and Accounting (AAA) Rules                             #####################
 ##########################################################################################################################################################
@@ -90,16 +92,16 @@
     - scored
 
 # # 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15' (Scored)
-# - name: 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15'
-#   apt:
-#     name: sudo
-#     state: present
-#     install_recommends: false
-#   tags:
-#     - section1
-#     - level_2
-#     - 1.1.7
-#     - scored
+- name: 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15'
+  ios_config:
+    commands: 
+      - aaa authorization commands 15 default local
+  # when: not secure_cisco_ios_tacacs_servers
+  tags:
+    - section1
+    - level_2
+    - 1.1.7
+    - scored
 
 # # 1.1.8 Set 'aaa accounting connection' (Scored)
 # - name: 1.1.8 Set 'aaa accounting connection'

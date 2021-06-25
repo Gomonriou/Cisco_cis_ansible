@@ -1,1 +1,52 @@
-https://docs.ansible.com/ansible/latest/collections/cisco/nxos/nxos_aaa_server_host_module.html
+---
+
+- name: radius_1 démarre une nouvelle configuration
+  ios_config:
+    commands: 
+      - aaa new-model
+  when: radius
+  tags:
+    - radius_1
+    - radius
+
+- name: radius_2 activer de manière globale, sur l’ensemble du switch, l’authentification 802.1x
+  ios_config:
+    commands: 
+      - aaa authentication dot1x default group radius
+  when: radius
+  tags:
+    - radius_2
+    - radius
+
+- name: radius_3 
+  ios_config:
+    commands: 
+      - dot1x system-auth-control
+  when: radius
+  tags:
+    - radius_3
+    - radius
+
+- name: radius_4 select la zone d'activation du 802.1x et l'active
+  ios_config:
+    parents: "interface GigabitEthernet0/2"
+    lines:
+      - dot1x port-control auto
+  when: radius
+  tags:
+    - radius_4
+    - radius
+
+- name: radius_5 select la zone d'activation du 802.1x 
+  nxos_aaa_server_host:
+    state: present
+    server_type: radius
+    address: "{{ ip_radius }}"
+    auth_port: "{{ auth_port }}"
+    acct_port: "{{ acct_port }}"
+    key: "{{ secret_string }}"
+    host_timeout: "{{ host_timeout }}"   
+  when: radius
+  tags:
+    - radius_5
+    - radius
