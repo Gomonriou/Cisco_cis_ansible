@@ -246,7 +246,7 @@
       commands:
         - service password-encryption   
     when:
-    - test.stdout | length == 0
+    - test.stdout[0] != ""
   tags:
     - section1
     - level_1

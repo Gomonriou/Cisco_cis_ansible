@@ -1,0 +1,190 @@
+---
+
+##########################################################################################################################################################
+#####################                                              2.1.1 Setup SSH                                                   #####################
+##########################################################################################################################################################
+
+# 2.1.1.1.1 Set the 'hostname' (Scored)
+- name: 2.1.1.1.1 Set the 'hostname'
+  block:
+  - name: 2.1.1.1.1 CTRL Set the 'hostname'
+    ios_command:
+      commands:
+        - sh run | incl hostname    
+    register: test
+  - name: 2.1.1.1.1 MESS Set the 'hostname'
+    ios_config:
+      lines:
+        - "hostname {{ hostname }}"
+    when:
+    - test.stdout[0] == ""
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.1.1'
+    - scored
+    - '2.1.1'
+
+# 2.1.1.1.2 Set the 'ip domain name' (Scored)
+- name: 2.1.1.1.2 Set the 'ip domain name'
+  block:
+  - name: 2.1.1.1.2 CTRL Set the 'ip domain name'
+    ios_command:
+      commands:
+        - sh run | incl domain name   
+    register: test
+  - name: 2.1.1.1.2 ACT Set the 'ip domain name'
+    ios_config:
+      lines:
+        - "ip domain-name {{ domain_name_ip }}"
+    when:
+    - test.stdout[0] == ""
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.1.2'
+    - scored
+    - '2.1.1'
+
+# 2.1.1.1.3 Set 'modulus' to greater than or equal to 2048 for 'crypto key generate rsa' (Not Scored)
+- name: 2.1.1.1.3 Set 'modulus' to greater than or equal to 2048 for 'crypto key generate rsa' 
+  block:
+  - name: 2.1.1.1.3 CTRL sh crypto key mypubkey rsa
+    ios_command:
+      commands:
+        - sh crypto key mypubkey rsa  
+    register: test
+  - name: 2.1.1.1.3 ACT sh crypto key mypubkey rsa
+    ios_config:
+      lines:
+        - "crypto key generate rsa general-keys modulus 2048"
+    when:
+    - test.stdout[0] == ""
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.1.3'
+    - scored
+    - '2.1.1'    
+
+# 2.1.1.1.4 Set 'seconds' for 'ip ssh timeout' (Scored)
+- name: 2.1.1.1.4 ACT Set 'seconds' for 'ip ssh timeout'
+  ios_config:
+    lines:
+      - "ip ssh time-out 60"
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.1.4'
+    - scored
+    - '2.1.1'   
+
+# 2.1.1.1.5 Set maximimum value for 'ip ssh authentication-retries' (Scored)
+- name: 2.1.1.1.5 Set maximimum value for 'ip ssh authentication-retries' 
+  ios_config:
+    lines:
+      - "ip ssh authentication-retries 3"
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.1.5'
+    - scored
+    - '2.1.1'   
+
+# 2.1.1.2 Set version 2 for 'ip ssh version' (Scored)
+- name: 2.1.1.2 Set version 2 for 'ip ssh version'
+  ios_config:
+    lines:
+      - "ip ssh version 2"
+  tags:
+    - section2
+    - level_2
+    - '2.1.1.2'
+    - scored
+    - '2.1.1'  
+
+# 2.1.2 Set 'no cdp run' (Scored)
+- name: 2.1.2 Set 'no cdp run'
+  ios_config:
+    lines:
+      - "no cdp run"
+  tags:
+    - section2
+    - level_2
+    - '2.1.2'
+    - scored
+
+# 2.1.3 Set 'no ip bootp server' (Scored)
+- name: 2.1.3 Set 'no ip bootp server'
+  ios_config:
+    lines:
+      - "no ip bootp server"
+  failed_when: false
+  tags:
+    - section2
+    - level_2
+    - '2.1.3'
+    - scored 
+
+# 2.1.4 Set 'no service dhcp' (Scored)
+- name: 2.1.4 Set 'no service dhcp'
+  ios_config:
+    lines:
+      - "no service dhcp"
+  tags:
+    - section2
+    - level_2
+    - '2.1.4'
+    - scored 
+  
+# 2.1.5 Set 'no ip identd' (Scored)
+- name: 2.1.5 Set 'no ip identd'
+  ios_config:
+    lines:
+      - "no ip identd"
+  failed_when: false
+  tags:
+    - section2
+    - level_2
+    - '2.1.5'
+    - scored 
+
+# 2.1.6 Set 'service tcp-keepalives-in' (Scored)
+- name: 2.1.6 Set 'service tcp-keepalives-in'
+  ios_config:
+    lines:
+      - "service tcp-keepalives-in"
+  tags:
+    - section2
+    - level_2
+    - '2.1.6'
+    - scored 
+
+
+# 2.1.7 Set 'service tcp-keepalives-out' (Scored)
+- name: 2.1.7 Set 'service tcp-keepalives-out' 
+  ios_config:
+    lines:
+      - "service tcp-keepalives-out"
+  tags:
+    - section2
+    - level_2
+    - '2.1.7'
+    - scored 
+
+# 2.1.8 Set 'no service pad' (Scored)
+- name: 2.1.8 Set 'no service pad' 
+  ios_config:
+    lines:
+      - "no service pad"
+  tags:
+    - section2
+    - level_2
+    - '2.1.8'
+    - scored 
+
+
+##########################################################################################################################################################
+#####################                                              2.2 Logging Rules                                                  #####################
+##########################################################################################################################################################
+

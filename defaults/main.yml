@@ -1,10 +1,14 @@
 ---
+## GEN 
+
+domain_name_ip : mysite.com
+hostname : Catalyst
 
 ## Vars radius
 
 radius : false
 interfaces_8021x : GigabitEthernet 0/2 #fa0/1-24
-ip_radius : 192.168.17.254
+ip_radius : '192.168.17.254'
 auth_port : '1812'
 acct_port : '1813'
 secret_string : unsupersecret # Avoir un secret partagé différent par client de 22 caractères mini
