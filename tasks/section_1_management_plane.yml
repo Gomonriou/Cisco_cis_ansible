@@ -1,0 +1,166 @@
+##########################################################################################################################################################
+#####################                 1.1 Local Authentication, Authorization and Accounting (AAA) Rules                             #####################
+##########################################################################################################################################################
+
+# 1.1.1 Enable 'aaa new-model' (Scored)
+- name: 1.1.1 Enable 'aaa new-model'
+  block:
+  - name: 1.1.1 Control Enable 'aaa new-model'
+    ios_command:
+      commands:
+        - show running-config | incl aaa new-model      
+    register: test
+  - name: 1.1.1 Mess Control Enable 'aaa new-model'
+    debug:
+      msg: |
+        fait lors de la phase des pre-requis {{ test.stdout_lines }}
+  tags:
+    - section1
+    - level_1
+    - 1.1.1
+    - scored
+
+# # 1.1.2 Enable 'aaa authentication login' (Scored)
+- name: 1.1.2 Enable 'aaa authentication login'
+  block:
+  - name: 1.1.2 CTRL Enable 'aaa authentication login'
+    ios_command:
+      commands:
+        - show run | incl aaa authentication login       
+    register: test
+  - name: 1.1.2 MESS Enable 'aaa authentication login'
+    debug:
+      msg: |
+        fait lors de la phase des pre-requis {{ test.stdout_lines }}
+  tags:
+    - section1
+    - level_1
+    - 1.1.2
+    - scored
+
+# # 1.1.3 Enable 'aaa authentication enable default' (Scored)
+- name: 1.1.3 Enable 'aaa authentication enable default'
+  block:
+  - name: 1.1.3 CTRL Enable 'aaa authentication enable default'
+    ios_command:
+      commands:
+        - show running-config | incl aaa authentication enable       
+    register: test
+  - name: 1.1.3 MESS Enable 'aaa authentication enable default'
+    debug:
+      msg: |
+        fait lors de la phase des pre-requis {{ test.stdout_lines }}
+  tags:
+    - section1
+    - level_1
+    - 1.1.3
+    - scored
+
+# # 1.1.4 Set 'login authentication for 'line con 0' (Scored)
+- name: 1.1.4 Set 'login authentication for 'line con 0'
+  debug:
+    msg: |
+      fait lors de la phase des pre-requis
+  tags:
+    - section1
+    - level_1
+    - 1.1.4
+    - scored
+
+# # 1.1.5 Set 'login authentication for 'line tty' (Scored)
+- name: 1.1.5 Set 'login authentication for 'line tty'
+  debug:
+    msg: |
+      Pas de tty 
+  tags:
+    - section1
+    - level_1
+    - 1.1.5
+    - scored
+
+# # 1.1.6 Set 'login authentication for 'line vty' (Scored)
+- name: 1.1.6 Set 'login authentication for 'line vty'
+  debug:
+    msg: |
+      fait lors de la phase des pre-requis
+  tags:
+    - section1
+    - level_1
+    - 1.1.6
+    - scored
+
+# # 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15' (Scored)
+# - name: 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15'
+#   apt:
+#     name: sudo
+#     state: present
+#     install_recommends: false
+#   tags:
+#     - section1
+#     - level_2
+#     - 1.1.7
+#     - scored
+
+# # 1.1.8 Set 'aaa accounting connection' (Scored)
+# - name: 1.1.8 Set 'aaa accounting connection'
+#   apt:
+#     name: sudo
+#     state: present
+#     install_recommends: false
+#   tags:
+#     - section1
+#     - level_2
+#     - 1.1.8
+#     - scored
+
+# # 1.1.9 Set 'aaa accounting exec' (Scored)
+# - name: 1.1.9 Set 'aaa accounting exec'
+#   apt:
+#     name: sudo
+#     state: present
+#     install_recommends: false
+#   tags:
+#     - section1
+#     - level_2
+#     - 1.1.9
+#     - scored
+
+# # 1.1.10 Set 'aaa accounting network' (Scored)
+# - name: 1.1.10 Set 'aaa accounting network'
+#   apt:
+#     name: sudo
+#     state: present
+#     install_recommends: false
+#   tags:
+#     - section1
+#     - level_2
+#     - 1.1.10
+#     - scored
+
+# # 1.1.11 Set 'aaa accounting system' (Scored)
+# - name: 1.1.11 Set 'aaa accounting system'
+#   apt:
+#     name: sudo
+#     state: present
+#     install_recommends: false
+#   tags:
+#     - section1
+#     - level_2
+#     - 1.1.11
+#     - scored
+
+##########################################################################################################################################################
+#####################                                                  1.2 Access Rules                                              #####################
+##########################################################################################################################################################
+
+##########################################################################################################################################################
+#####################                                                  1.3 Banner Rules                                              #####################
+##########################################################################################################################################################
+
+##########################################################################################################################################################
+#####################                                                  1.4 Password Rules                                            #####################
+##########################################################################################################################################################
+
+##########################################################################################################################################################
+#####################                                                  1.5 SNMP Rules                                                #####################
+##########################################################################################################################################################

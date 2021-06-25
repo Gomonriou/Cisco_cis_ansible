@@ -1,0 +1,8 @@
+---
+
+- include: section_1_management_plane.yml
+  become: true
+# - include: section_2_control_plane.yml
+#   become: true
+# - include: section_3_data_plane.yml
+#   become: true

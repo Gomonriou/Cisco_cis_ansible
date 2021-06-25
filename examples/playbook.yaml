@@ -1,0 +1,15 @@
+---
+- hosts: host1
+  gather_facts: no
+  connection: network_cli
+  become: yes
+  become_method: enable
+  roles:
+    - ../../Cisco_cis_ansible
+
+  vars:
+    ansible_user: "catalyst"
+    ansible_ssh_pass: "catatest"
+    authorize: "yes"
+    ansible_become_pass: "toor"
+    ansible_network_os: ios
