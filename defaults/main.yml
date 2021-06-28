@@ -7,10 +7,14 @@ hostname : Catalyst
 ## Loopback
 loopback_interface_number : 1
 
-
 ## SYSLOG 
 syslog_server : false
 syslog_server_ip : XXXX.XXXX.XXXX.XXXX
+
+## NTP 
+ntp_key_id : 1
+ntp_key : 6bddf84c003c03f281e564f7f72d8e2d
+ntp-server_ip_address : 192.168.17.254
 
 ## Vars radius
 
