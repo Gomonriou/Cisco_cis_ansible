@@ -254,10 +254,7 @@
     - scored  
     - '1.4'
 
-# 1.4.3 Set 'username secret' for all local users (Scored)
-- name: 1.4.3 Set 'username secret' for all local users
-  block:
-  - name: 1.4.3 CTRL Set 'username secret' for all local users
+# 1.4.3 Set 'username secret' for all local users (Sco2.1.1 Setup SSH  local users
     ios_command:
       commands:
         - show run | incl username   

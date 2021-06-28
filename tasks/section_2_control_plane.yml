@@ -188,3 +188,14 @@
 #####################                                              2.2 Logging Rules                                                  #####################
 ##########################################################################################################################################################
 
+# 2.2.2 Set 'buffer size' for 'logging buffered' (Scored)
+- name: 2.2.2 Set 'buffer size' for 'logging buffered' 
+  ios_config:
+    lines:
+      - "no service pad"
+  tags:
+    - section2
+    - level_2
+    - '2.1.8'
+    - scored 
+
