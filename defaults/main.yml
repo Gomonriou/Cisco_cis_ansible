@@ -4,6 +4,14 @@
 domain_name_ip : mysite.com
 hostname : Catalyst
 
+## Loopback
+loopback_interface_number : 1
+
+
+## SYSLOG 
+syslog_server : false
+syslog_server_ip : XXXX.XXXX.XXXX.XXXX
+
 ## Vars radius
 
 radius : false

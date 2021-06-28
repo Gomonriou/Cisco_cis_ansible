@@ -20,7 +20,7 @@
     - test.stdout[0] == ""
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.1.1'
     - scored
     - '2.1.1'
@@ -41,7 +41,7 @@
     - test.stdout[0] == ""
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.1.2'
     - scored
     - '2.1.1'
@@ -62,7 +62,7 @@
     - test.stdout[0] == ""
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.1.3'
     - scored
     - '2.1.1'    
@@ -74,7 +74,7 @@
       - "ip ssh time-out 60"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.1.4'
     - scored
     - '2.1.1'   
@@ -86,7 +86,7 @@
       - "ip ssh authentication-retries 3"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.1.5'
     - scored
     - '2.1.1'   
@@ -98,7 +98,7 @@
       - "ip ssh version 2"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.1.2'
     - scored
     - '2.1.1'  
@@ -110,7 +110,7 @@
       - "no cdp run"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.2'
     - scored
 
@@ -122,7 +122,7 @@
   failed_when: false
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.3'
     - scored 
 
@@ -133,7 +133,7 @@
       - "no service dhcp"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.4'
     - scored 
   
@@ -145,7 +145,7 @@
   failed_when: false
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.5'
     - scored 
 
@@ -156,7 +156,7 @@
       - "service tcp-keepalives-in"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.6'
     - scored 
 
@@ -168,7 +168,7 @@
       - "service tcp-keepalives-out"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.7'
     - scored 
 
@@ -179,7 +179,7 @@
       - "no service pad"
   tags:
     - section2
-    - level_2
+    - level_1
     - '2.1.8'
     - scored 
 
@@ -188,14 +188,105 @@
 #####################                                              2.2 Logging Rules                                                  #####################
 ##########################################################################################################################################################
 
+# 2.2.1 Set 'logging on' (Scored)
+- name: 2.2.1 Set 'logging on'
+  ios_config:
+    lines:
+      - "logging on"
+  tags:
+    - section2
+    - level_1
+    - '2.2.1'
+    - scored 
+    - '2.2'
+ 
 # 2.2.2 Set 'buffer size' for 'logging buffered' (Scored)
 - name: 2.2.2 Set 'buffer size' for 'logging buffered' 
   ios_config:
     lines:
-      - "no service pad"
+      - "logging buffered 640000"
+  tags:
+    - section2
+    - level_1
+    - '2.2.2'
+    - scored 
+    - '2.2'
+ 
+# 2.2.3 Set 'logging console critical' (Scored)
+- name: 2.2.3 Set 'logging console critical'
+  ios_config:
+    lines:
+      - "logging console critical"
+  tags:
+    - section2
+    - level_1
+    - '2.2.3'
+    - scored 
+    - '2.2'
+
+# 2.2.4 Set IP address for 'logging host' (Scored)
+- name: 2.2.4 Set IP address for 'logging host'
+  ios_config:
+    lines:
+      - "logging host {{ syslog_server_ip }}"
+  when: syslog_server   
+  tags:
+    - section2
+    - level_1
+    - '2.2.4'
+    - scored 
+    - '2.2'
+
+# 2.2.5 Set 'logging trap informational' (Scored)
+- name: 2.2.5 Set 'logging trap informational'
+  ios_config:
+    lines:
+      - "logging trap informational"
+  tags:
+    - section2
+    - level_1
+    - '2.2.5'
+    - scored 
+    - '2.2'
+
+# 2.2.6 Set 'service timestamps debug datetime' (Scored)
+- name: 2.2.6 Set 'service timestamps debug datetime'
+  ios_config:
+    lines:
+      - "service timestamps debug datetime msec show-timezone"
+  tags:
+    - section2
+    - level_1
+    - '2.2.6'
+    - scored 
+    - '2.2'
+
+# 2.2.7 Set 'logging source interface' (Scored)
+- name: 2.2.7 Set 'logging source interface'
+  ios_config:
+    lines:
+      - "logging source-interface loopback {{ loopback_interface_number }}"
+  tags:
+    - section2
+    - level_1
+    - '2.2.7'
+    - scored 
+    - '2.2'
+
+
+##########################################################################################################################################################
+#####################                                              2.3 NTP Rules                                                     #####################
+##########################################################################################################################################################
+
+# 2.3.1.1 Set 'ntp authenticate' (Scored)
+- name: 2.3.1.1 Set 'ntp authenticate'
+  ios_config:
+    lines:
+      - "ntp authenticate"
   tags:
     - section2
     - level_2
-    - '2.1.8'
+    - '2.3.1.1'
     - scored 
+    - '2.3'
 
