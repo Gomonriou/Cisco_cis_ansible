@@ -162,6 +162,162 @@
 #####################                                                  1.2 Access Rules                                              #####################
 ##########################################################################################################################################################
 
+# 1.2.1 Set 'privilege 1' for local users (Scored)
+- name: 1.2.1 Set 'privilege 1' for local users
+  ios_config:
+    lines:
+      - "username {{ USER_PRIV_1 }} privilege 1 "
+  tags:
+    - section1
+    - level_1
+    - '1.2.1'
+    - scored 
+    - '1.2'
+
+# 1.2.2 Set 'transport input ssh' for 'line vty' connections (Scored)
+- name: 1.2.2 MANUAL Set 'transport input ssh' for 'line vty' connections
+  ios_config:
+    lines:
+      -  transport input ssh
+    parents: line vty 0 4
+  tags:
+    - section1
+    - level_1
+    - '1.2.2'
+    - scored 
+    - '1.2'
+
+# 1.2.3 Set 'no exec' for 'line aux 0' (Scored)
+- name: 1.2.3 Set 'no exec' for 'line aux 0'
+  ios_config:
+    lines:
+      - "no exec"
+    parents: line aux 0
+  when: device == 'router'
+  tags:
+    - section1
+    - level_1
+    - '1.2.3'
+    - scored 
+    - '1.2'
+
+# 1.2.4 Create 'access-list' for use with 'line vty' (Not Scored)
+# - name: 1.2.4 Create 'access-list' for use with 'line vty' 
+#   ios_config:
+#     lines:
+#       - access-list {{ vty_acl_number }} permit tcp {{ vty_acl_block_with_mask }} any
+#       - access-list {{ vty_acl_number }} permit tcp host {{ vty_acl_host }} any
+#       - deny ip any any log
+#   tags:
+#     - section1
+#     - level_1
+#     - '1.2.4'
+#     - not_scored 
+#     - '1.2'
+
+# - name: Merge provided configuration with device configuration
+#   ios_acls:
+#     config:
+#     - afi: ipv4
+#       acls:
+#       - name: vty_acl_number
+#         acl_type: standard
+#         aces:
+#         - grant: permit
+#           protocol_options:
+#               tcp:
+#                 ack: true
+#           source:
+#             address: vty_acl_host
+#             wildcard_bits: vty_acl_block_with_mask
+#   tags:
+#     - section1
+#     - level_1
+#     - '1.2.4'
+#     - not_scored 
+#     - '1.2'
+
+# 1.2.5 Set 'access-class' for 'line vty' (Scored)
+- name: 1.2.5 MANUAL Set 'access-class' for 'line vty'
+  ios_config:
+    lines:
+      -  "access-class {{ vty_acl_number }} in"
+    parents: line vty 0 4
+  tags:
+    - section1
+    - level_1
+    - '1.2.5'
+    - scored 
+    - '1.2'
+
+# 1.2.6 Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0' (Scored)
+- name: 1.2.6 Set 'exec-timeout' to less than or equal to 10 minutes for 'line aux 0'
+  ios_config:
+    lines:
+      - "exec-timeout {{ timeout_aux }}"
+    parents: line aux 0
+  when: device == 'router'
+  tags:
+    - section1
+    - level_1
+    - '1.2.6'
+    - scored 
+    - '1.2'
+
+# 1.2.7 Set 'exec-timeout' to less than or equal to 10 minutes for 'line console 0' (Scored)
+- name: 1.2.7 Set 'exec-timeout' to less than or equal to 10 minutes for 'line console 0'
+  ios_config:
+    lines:
+      - "exec-timeout {{ timeout_con }}"
+    parents: line con 0
+  tags:
+    - section1
+    - level_1
+    - '1.2.7'
+    - scored 
+    - '1.2'
+
+# 1.2.8 Set 'exec-timeout' less than or equal to 10 minutes 'line tty' (Scored)
+- name: 1.2.8 Set 'exec-timeout' less than or equal to 10 minutes 'line tty'
+  ios_config:
+    lines:
+      - "exec-timeout {{ timeout_tty }}"
+    parents: line tty 0 4
+  when: tty
+  tags:
+    - section1
+    - level_1
+    - '1.2.8'
+    - scored 
+    - '1.2'
+
+# 1.2.9 Set 'exec-timeout' to less than or equal to 10 minutes 'line vty' (Scored)
+- name: 1.2.9 Set 'exec-timeout' to less than or equal to 10 minutes 'line vty'
+  ios_config:
+    lines:
+      - "exec-timeout {{ timeout_vty }}"
+    parents: line vty 0 4
+  tags:
+    - section1
+    - level_1
+    - '1.2.9'
+    - scored 
+    - '1.2'
+
+# 1.2.10 Set 'transport input none' for 'line aux 0' (Scored)
+- name: 1.2.10 Set 'transport input none' for 'line aux 0'
+  ios_config:
+    lines:
+      - "transport input none"
+    parents: line aux 0
+  when: device == 'router'
+  tags:
+    - section1
+    - level_1
+    - '1.2.10'
+    - scored 
+    - '1.2'
+
 ##########################################################################################################################################################
 #####################                                                  1.3 Banner Rules                                              #####################
 ##########################################################################################################################################################

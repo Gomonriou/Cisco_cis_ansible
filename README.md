@@ -69,23 +69,23 @@ The ssh protocol can be enabled by default. Let's check :
 
 ## Tags 
 
-* Scored
+* scored
 
 Failure to comply with "Scored" recommendations will decrease the final benchmark score.
 Compliance with "Scored" recommendations will increase the final benchmark score.
 
-* Not Scored
+* not_scored
 
 Failure to comply with "Not Scored" recommendations will not decrease the final
 benchmark score. Compliance with "Not Scored" recommendations will not increase the
 final benchmark score.
 
-* Level 1
+* level_1
 1. be practical and prudent;
 2. provide a clear security benefit; and
 3. not inhibit the utility of the technology beyond acceptable means.
 
-* Level 2
+* level_2
 1. are intended for environments or use cases where security is paramount.
 2. acts as defense in depth measure.
 3. may negatively inhibit the utility or performance of the technology.
@@ -99,10 +99,21 @@ ansible-playbook -i host run.yaml  -vvvv
 
 #Run one tag only
 ```Bash
-ansible-playbook -i host run.yaml --tags="1.1.21"
+ansible-playbook -i host run.yaml --tags="scored"
 ```
 
 #Skips tags
 ```Bash
-ansible-playbook -i host run.yaml --skip-tags="3.1.2" --skip-tags="2.3.5"
+ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 ```
+
+
+## TO DO 
+
+1. rework 1.2.4
+2. rework all section & finsh 1.1.X
+3. debug radius_4 & 5
+4. 1.4.3 remove automatically user without secret -> 'no username {{item}}'
+5. 2.3.1.4 loop for multiple servers
+5. review SNMP 1.5.2-3-4 (Not urgent)
+6. Do section 3 (Not urgent)
