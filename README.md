@@ -70,10 +70,12 @@ The ssh protocol can be enabled by default. Let's check :
 ## Tags 
 
 * Scored
+
 Failure to comply with "Scored" recommendations will decrease the final benchmark score.
 Compliance with "Scored" recommendations will increase the final benchmark score.
 
 * Not Scored
+
 Failure to comply with "Not Scored" recommendations will not decrease the final
 benchmark score. Compliance with "Not Scored" recommendations will not increase the
 final benchmark score.
