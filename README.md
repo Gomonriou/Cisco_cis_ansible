@@ -1,6 +1,6 @@
 # Disclaimer 
 
-This repo is in progress
+This repo is in progress, it aims to easily deploy the security of the cis benchmark ios and 802.1x with radius.
 
 # Requirement :
 
@@ -89,6 +89,11 @@ final benchmark score.
 1. are intended for environments or use cases where security is paramount.
 2. acts as defense in depth measure.
 3. may negatively inhibit the utility or performance of the technology.
+
+* basic tags by section or number
+1. section1 
+2. 1.1 (all point 1 of section 1)
+3. 1.1.1 (the specific task)
 
 ## Commands
 
