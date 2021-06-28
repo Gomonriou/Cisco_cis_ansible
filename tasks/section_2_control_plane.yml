@@ -357,3 +357,53 @@
 ##########################################################################################################################################################
 #####################                                         2.4 Loopback Rules                                                     #####################
 ##########################################################################################################################################################
+
+# 2.4.1 Create a single 'interface loopback' (Scored)
+- name: 2.4.1 Create a single 'interface loopback'
+  ios_config:
+    lines:
+      - "interface loopback {{ loopback_interface_number }}"
+      - " ip address {{ loopback_ip_address }} {{ loopback_subnet_mask }}"
+  tags:
+    - section2
+    - level_2
+    - '2.4.1'
+    - scored 
+    - '2.4'
+
+# 2.4.2 Set AAA 'source-interface' (Scored)
+- name: 2.4.2 Set AAA 'source-interface'
+  ios_config:
+    lines:
+      - "ip radius source-interface loopback {{ loopback_interface_number }}"
+  when: radius
+  tags:
+    - section2
+    - level_2
+    - '2.4.2'
+    - scored 
+    - '2.4'
+
+# 2.4.3 Set 'ntp source' to Loopback Interface (Scored)
+- name: 2.4.3 Set 'ntp source' to Loopback Interface 
+  ios_config:
+    lines:
+      - "ntp source loopback {{ loopback_interface_number }}"
+  tags:
+    - section2
+    - level_2
+    - '2.4.3'
+    - scored 
+    - '2.4'
+
+# 2.4.4 Set 'ip tftp source-interface' to the Loopback Interface (Scored)
+- name: 2.4.4 Set 'ip tftp source-interface' to the Loopback Interface 
+  ios_config:
+    lines:
+      - "ip tftp source-interface loopback {{ loopback_interface_number }}"
+  tags:
+    - section2
+    - level_2
+    - '2.4.4'
+    - scored 
+    - '2.4'
