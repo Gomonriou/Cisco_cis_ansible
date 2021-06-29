@@ -1,0 +1,9 @@
+---
+
+# # handlers file for {{ role_name }}
+
+- name: Save_conf
+  ios_command:
+    commands: write
+  vars:
+    ansible_command_timeout: 60
