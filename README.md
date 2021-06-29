@@ -1,13 +1,14 @@
 # Disclaimer 
 
-This repo is in progress, it aims to easily deploy the security of the cis benchmark ios and 802.1x with radius.
+This repo is in progress. 
+The purpose is to simplify the deployement of the CIS benchmark IOS, and 802.1x with radius.
 
-# Requirement :
+# Requirements :
 
 ## Check if you can use SSH
 
 Checking that the IOS supports the ssh protocol
-First of all, you have to check that the IOS of the switch supports ssh. The mention k9 (crypto) must appear in the name of the IOS.
+First of all, you have to check that the IOS of the switch supports ssh. The mention k9 (crypto) must appears in the name of the IOS.
 
     2960-RG#show version
 
@@ -94,12 +95,12 @@ final benchmark score.
 
 ## Commands
 
-#Get extra log when running playbook with debuging
+#Gets extra logs when running playbook with debugging
 ```Bash
 ansible-playbook -i host run.yaml  -vvvv
 ```
 
-#Run one tag only
+#Runs one tag only
 ```Bash
 ansible-playbook -i host run.yaml --tags="scored"
 ```
@@ -109,9 +110,10 @@ ansible-playbook -i host run.yaml --tags="scored"
 ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 ```
 
-## Save the configuration after ansible changes
+## Save the configuration once Ansible is completed
 
-1. Here the backup is done if you don't use tags (tasks/main.yml) / with section's tags (section1/section2) or with a special tag (save)
+
+1. Currently, backup is done if you don't use tags (tasks/main.yml) / with section's tags (section1/section2) or with a special tag (save)
 2. You can choose to call it on a special task with notify : Save_conf (Handlers)
 3. Or in post_tasks like in examples/playbook.yml
 
