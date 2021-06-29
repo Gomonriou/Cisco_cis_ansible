@@ -52,8 +52,6 @@ The ssh protocol can be enabled by default. Let's check :
     Catalyst(config-if)#ex
     Catalyst(config)#ip default-gateway 192.168.17.254
 
-    Vérification de la config
-    uration du vlan d'administration
     Catalyst#sh run int vlan1
 
 ## Save configuration
