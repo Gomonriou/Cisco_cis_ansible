@@ -119,10 +119,9 @@ ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 
 ## TO DO 
 
-1. rework 1.2.4
-2. rework all section & finsh 1.1.X
-3. debug radius_4 & 5
-4. 1.4.3 remove automatically user without secret -> 'no username {{item}}'
-5. 2.3.1.4 loop for multiple servers
-5. review SNMP 1.5.2-3-4 (Not urgent)
-6. Do section 3 (Not urgent)
+1. debug radius_4 & 5
+2. 1.4.3 remove automatically user without secret -> 'no username {{item}}'
+3. 2.3.1.4 loop for multiple servers
+4. review SNMP 1.5.2-3-4 (Not urgent)
+5. Do section 3 (Not urgent)
+6. Add Ansible Vault
