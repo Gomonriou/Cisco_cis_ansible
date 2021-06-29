@@ -7,7 +7,7 @@
 # 1.1.1 Enable 'aaa new-model' (Scored)
 - name: 1.1.1 Enable 'aaa new-model'
   block:
-  - name: 1.1.1 Control Enable 'aaa new-model'
+  - name: 1.1.1 ACT Enable 'aaa new-model'
     ios_config:
       lines:
         -  "aaa new-model"
@@ -27,15 +27,16 @@
 # # 1.1.2 Enable 'aaa authentication login' (Scored)
 - name: 1.1.2 Enable 'aaa authentication login'
   block:
-  - name: 1.1.2 CTRL Enable 'aaa authentication login'
-    ios_command:
-      commands:
-        - show run | incl aaa authentication login       
-    register: test
+  - name: 1.1.2 ACT Enable 'aaa authentication login'
+    ios_config:
+      lines:
+        -  "aaa authentication login default local-case"
+    when: not radius and not requirement
   - name: 1.1.2 MESS Enable 'aaa authentication login'
     debug:
       msg: |
-        fait lors de la phase des pre-requis {{ test.stdout_lines }}
+        done during requirement
+    when: requirement
   tags:
     - section1
     - level_1
@@ -46,15 +47,16 @@
 # # 1.1.3 Enable 'aaa authentication enable default' (Scored)
 - name: 1.1.3 Enable 'aaa authentication enable default'
   block:
-  - name: 1.1.3 CTRL Enable 'aaa authentication enable default'
-    ios_command:
-      commands:
-        - show running-config | incl aaa authentication enable       
-    register: test
+  - name: 1.1.3 ACT Enable 'aaa authentication enable default'
+    ios_config:
+      lines:
+        -  "aaa authentication enable default enable"
+    when: not radius and not requirement
   - name: 1.1.3 MESS Enable 'aaa authentication enable default'
     debug:
       msg: |
-        fait lors de la phase des pre-requis {{ test.stdout_lines }}
+        done during requirement
+    when: requirement
   tags:
     - section1
     - level_1
@@ -64,9 +66,10 @@
 
 # # 1.1.4 Set 'login authentication for 'line con 0' (Scored)
 - name: 1.1.4 Set 'login authentication for 'line con 0'
-  debug:
-    msg: |
-      fait lors de la phase des pre-requis
+  ios_config:
+    lines:
+      - "line console 0"
+      - "login authentication default"
   tags:
     - section1
     - level_1
@@ -76,9 +79,11 @@
 
 # # 1.1.5 Set 'login authentication for 'line tty' (Scored)
 - name: 1.1.5 Set 'login authentication for 'line tty'
-  debug:
-    msg: |
-      Pas de tty 
+  ios_config:
+    lines:
+      - "line tty 0 4"
+      - "login authentication default"
+  when: tty
   tags:
     - section1
     - level_1
@@ -88,9 +93,10 @@
 
 # # 1.1.6 Set 'login authentication for 'line vty' (Scored)
 - name: 1.1.6 Set 'login authentication for 'line vty'
-  debug:
-    msg: |
-      fait lors de la phase des pre-requis
+  ios_config:
+    lines:
+      - "login authentication default"
+    parents: line vty 0 4      
   tags:
     - section1
     - level_1
@@ -100,10 +106,17 @@
 
 # # 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15' (Scored)
 - name: 1.1.7 Set 'aaa accounting' to log all privileged use commands using 'commands 15'
-  ios_config:
-    commands: 
-      - aaa authorization commands 15 default local
-  # when: not secure_cisco_ios_tacacs_servers
+  block:
+  - name: 1.1.7 ACT Set 'aaa accounting' to log all privileged use commands using 'commands 15'
+    ios_config:
+      lines:
+        -  "aaa authorization commands 15 default local"
+    when: not radius and not requirement
+  - name: 1.1.7 MESS Set 'aaa accounting' to log all privileged use commands using 'commands 15'
+    debug:
+      msg: |
+        done during requirement
+    when: requirement  
   tags:
     - section1
     - level_2

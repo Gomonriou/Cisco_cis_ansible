@@ -1,7 +1,7 @@
 ---
 ## General 
 
-requirement : yes # (yes|no) put no if you didn't follow the list of requirements
+requirement : no # (yes|no) put no if you didn't follow the list of requirements
 domain_name_ip : mysite.com
 hostname : Catalyst
 USER_PRIV_1 : user1
