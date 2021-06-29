@@ -125,3 +125,4 @@ ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 4. review SNMP 1.5.2-3-4 (Not urgent)
 5. Do section 3 (Not urgent)
 6. Add Ansible Vault
+7. 1.2.4 review

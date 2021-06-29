@@ -1,6 +1,6 @@
 ---
 
-- name: radius_1 démarre une nouvelle configuration
+- name: radius_1 starts new AAA configuration
   ios_config:
     commands: 
       - aaa new-model
@@ -9,7 +9,7 @@
     - radius_1
     - radius
 
-- name: radius_2 activer de manière globale, sur l’ensemble du switch, l’authentification 802.1x
+- name: radius_2 enable 802.1x authentication globally, on the entire switch
   ios_config:
     commands: 
       - aaa authentication dot1x default group radius
@@ -27,7 +27,7 @@
     - radius_3
     - radius
 
-- name: radius_4 select la zone d'activation du 802.1x et l'active
+- name: radius_4 select the 802.1x activation zone and activate it
   ios_config:
     parents: "interface GigabitEthernet0/2"
     lines:
@@ -37,7 +37,7 @@
     - radius_4
     - radius
 
-- name: radius_5 select la zone d'activation du 802.1x 
+- name: radius_5 Conf radius server
   nxos_aaa_server_host:
     state: present
     server_type: radius
