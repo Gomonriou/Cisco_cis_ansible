@@ -1,4 +1,5 @@
 ---
+
 - hosts: host1
   gather_facts: no
   connection: network_cli
@@ -13,3 +14,10 @@
     authorize: "yes"
     ansible_become_pass: "toor"
     ansible_network_os: ios
+
+  post_tasks:
+    - name: Save conf in post tasks
+      ios_command:
+        commands: write
+      vars:
+        ansible_command_timeout: 60

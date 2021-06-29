@@ -8,3 +8,13 @@
 #   become: true
 - include: radius.yml
   become: true
+
+- name: Save conf
+  ios_command:
+    commands: write
+  vars:
+    ansible_command_timeout: 60
+  tags:
+    - section1
+    - section2
+    - save    

@@ -58,10 +58,9 @@ The ssh protocol can be enabled by default. Let's check :
 
 ## Save configuration
 
-    Catalyst#copy running-config startup-config
-    Catalyst#write 
+    Catalyst#copy running-config startup-config (or write)
 
-    Catalyst#reload (pour test)
+    Catalyst#show archive config diff (OR reload )
 
 # Use :
 
@@ -112,6 +111,11 @@ ansible-playbook -i host run.yaml --tags="scored"
 ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 ```
 
+## Save the configuration after ansible changes
+
+1. Here the backup is done if you don't use tags (tasks/main.yml) / with section's tags (section1/section2) or with a special tag (save)
+2. You can choose to call it on a special task with notify : Save_conf (Handlers)
+3. Or in post_tasks like in examples/playbook.yml
 
 ## TO DO 
 
