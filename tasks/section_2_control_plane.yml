@@ -318,7 +318,7 @@
 - name: 2.3.1.4 Set 'key' for each 'ntp server'
   ios_config:
     lines:
-      - "ntp server {{ ntp-server_ip_address }} {{ key ntp_key_id }}"
+      - "ntp server {{ ntp_server_ip_address }} key {{ ntp_key_id }}"
   tags:
     - section2
     - level_2
@@ -346,7 +346,7 @@
 - name: 2.3.2 Set 'ip address' for 'ntp server'
   ios_config:
     lines:
-      - "ntp server {{ ntp-server_ip_address }}"
+      - "ntp server {{ ntp_server_ip_address }}"
   tags:
     - section2
     - level_1

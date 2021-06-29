@@ -116,7 +116,7 @@ ansible-playbook -i host run.yaml --skip-tags="level_2" --skip-tags="not_scored"
 ## TO DO 
 
 1. rework 1.2.4
-2. rework all section & finsh 1.1.X like 1.1.1? 
+2. rework all section & finsh 1.1.X
 3. debug radius_4 & 5
 4. 1.4.3 remove automatically user without secret -> 'no username {{item}}'
 5. 2.3.1.4 loop for multiple servers
