@@ -9,7 +9,7 @@
     - radius_1
     - radius
 
-- name: radius_2 enable 802.1x authentication globally, on the entire switch
+- name: radius_2 apply radius group on dot1x
   ios_config:
     commands: 
       - aaa authentication dot1x default group radius
@@ -18,10 +18,10 @@
     - radius_2
     - radius
 
-- name: radius_3 
+- name: radius_3 enable 802.1x authentication globally, on the entire switch
   ios_config:
     commands: 
-      - dot1x system-auth-control
+      - dot1x system-auth-control 
   when: radius
   tags:
     - radius_3
@@ -29,23 +29,19 @@
 
 - name: radius_4 select the 802.1x activation zone and activate it
   ios_config:
-    parents: "interface GigabitEthernet0/2"
+    parents: interface {{ interfaces_8021x }}
     lines:
       - dot1x port-control auto
+  ignore_errors: yes  
   when: radius
   tags:
     - radius_4
     - radius
 
 - name: radius_5 Conf radius server
-  nxos_aaa_server_host:
-    state: present
-    server_type: radius
-    address: "{{ ip_radius }}"
-    auth_port: "{{ auth_port }}"
-    acct_port: "{{ acct_port }}"
-    key: "{{ secret_string }}"
-    host_timeout: "{{ host_timeout }}"   
+  ios_config:
+    lines: 
+      - radius-server host {{ ip_radius }} auth-port {{ auth_port }} acct-port {{ acct_port }} key {{ secret_string }}
   when: radius
   tags:
     - radius_5
