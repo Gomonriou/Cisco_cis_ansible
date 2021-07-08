@@ -17,10 +17,10 @@ loopback_subnet_mask : 255.255.255.0
 syslog_server : false
 syslog_server_ip : XXXX.XXXX.XXXX.XXXX
 
-## ACL for 
-vty_acl_number : 1
-vty_acl_block_with_mask : 255.255.255.255
-vty_acl_host : 0.0.0.0
+## ACL for acces vty
+vty_acl_number_vty : 1
+vty_acl_mask_vty : 0.0.0.255
+vty_acl_addr_vty : 192.168.19.0
 
 ## Time out seconds
 timeout_aux : 600

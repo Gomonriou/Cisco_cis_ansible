@@ -216,25 +216,24 @@
     - '1.2'
 
 # 1.2.4 Create 'access-list' for use with 'line vty' (Not Scored)
-# - name: 1.2.4 Create 'access-list' for use with 'line vty' 
-#   ios_config:
-#     lines:
-#       - access-list {{ vty_acl_number }} permit tcp {{ vty_acl_block_with_mask }} any
-#       - access-list {{ vty_acl_number }} permit tcp host {{ vty_acl_host }} any
-#       - deny ip any any log
-#   tags:
-#     - section1
-#     - level_1
-#     - '1.2.4'
-#     - not_scored 
-#     - '1.2'
+- name: 1.2.4 Create 'access-list' for use with 'line vty' 
+  ios_config:
+    lines:
+      - access-list {{ vty_acl_number_vty }} permit {{ vty_acl_addr_vty }} {{ vty_acl_mask_vty }} 
+  tags:
+    - section1
+    - level_1
+    - '1.2.4'
+    - not_scored 
+    - '1.2'
 
-# - name: Merge provided configuration with device configuration
+
+# - name: 1.2.4 Create 'access-list' for use with 'line vty' 
 #   ios_acls:
 #     config:
 #     - afi: ipv4
 #       acls:
-#       - name: vty_acl_number
+#       - name: 1 #"{{ vty_acl_number }}"
 #         acl_type: standard
 #         aces:
 #         - grant: permit
@@ -242,8 +241,9 @@
 #               tcp:
 #                 ack: true
 #           source:
-#             address: vty_acl_host
-#             wildcard_bits: vty_acl_block_with_mask
+#             address:  0.0.0.0 #"{{ vty_acl_host }}"
+#             wildcard_bits: 255.255.255.255 #"{{ vty_acl_block_with_mask }}"
+#     state: merged
 #   tags:
 #     - section1
 #     - level_1
